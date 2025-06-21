@@ -1,57 +1,13 @@
 import Navigation from "@/comps/Navigation";
-import Image from "next/image";
+import Hero from "@/comps/Hero";
 
 export default function Home() {
   return (
     <>
       <Navigation />
+      <Hero />
 
       <main className="bg-white dark:bg-gray-900">
-        {/* Hero Section */}
-        <section className="relative flex min-h-screen flex-col items-center justify-center px-4 py-24">
-          <div className="absolute inset-0 size-full">
-            <div className="relative h-full w-full select-none">
-              <Image
-                className="absolute right-0 min-w-dvh dark:hidden"
-                alt="Pattern Light"
-                src="/pattern-light.svg"
-                width="803"
-                height="774"
-              />
-              <Image
-                className="absolute right-0 hidden min-w-dvh dark:block"
-                alt="Pattern Dark"
-                src="/pattern-dark.svg"
-                width="803"
-                height="775"
-              />
-            </div>
-          </div>
-
-          <div className="relative z-10 max-w-4xl text-center">
-            <h1 className="mb-6 text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl dark:text-white">
-              Task Management Made Simple
-            </h1>
-            <p className="mb-8 text-lg leading-8 text-gray-600 sm:text-xl dark:text-gray-300">
-              Today todo list trackers are either too simple or too complicated.
-              This app takes those two ends and finds a middle ground where you
-              have flexibility with the combo of simple to help make managing
-              tasks simple and easy again.
-            </p>
-            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <button className="rounded-lg bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none">
-                Download for Mac
-              </button>
-              <button className="rounded-lg bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none">
-                Download for Windows
-              </button>
-              <button className="rounded-lg bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-lg hover:bg-blue-700 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none">
-                Download for Linux
-              </button>
-            </div>
-          </div>
-        </section>
-
         {/* Features Section */}
         <section id="features" className="py-24">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
