@@ -1,5 +1,6 @@
 import Navigation from "@/comps/Navigation";
 import Hero from "@/comps/Hero";
+import Features from "@/comps/Features";
 
 export default function Home() {
   return (
@@ -8,58 +9,7 @@ export default function Home() {
       <Hero />
 
       <main className="bg-white dark:bg-gray-900">
-        {/* Features Section */}
-        <section id="features" className="py-24">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-white">
-                Powerful Features
-              </h2>
-              <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-                Everything you need to manage your tasks efficiently
-              </p>
-            </div>
-
-            <div className="mt-20 grid grid-cols-1 gap-12 lg:grid-cols-2">
-              {/* Feature placeholders - will be expanded later */}
-              <div className="text-center">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  🎯 Task Management
-                </h3>
-                <p className="mt-2 text-gray-600 dark:text-gray-300">
-                  Create, edit, and organize your tasks with ease
-                </p>
-              </div>
-
-              <div className="text-center">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  🏷️ Organization
-                </h3>
-                <p className="mt-2 text-gray-600 dark:text-gray-300">
-                  Categories, priorities, and due dates to keep you organized
-                </p>
-              </div>
-
-              <div className="text-center">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  🎨 User Experience
-                </h3>
-                <p className="mt-2 text-gray-600 dark:text-gray-300">
-                  Beautiful interface with dark mode and smooth animations
-                </p>
-              </div>
-
-              <div className="text-center">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  💾 Data Management
-                </h3>
-                <p className="mt-2 text-gray-600 dark:text-gray-300">
-                  Import, export, and backup your data securely
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
+        <Features />
 
         {/* Downloads Section */}
         <section id="downloads" className="bg-gray-50 py-24 dark:bg-gray-800">
