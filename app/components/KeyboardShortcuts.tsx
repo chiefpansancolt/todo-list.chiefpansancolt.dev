@@ -122,8 +122,8 @@ export default function KeyboardShortcuts() {
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="mb-4 flex justify-center">
-              <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800">
-                <MdKeyboard className="h-6 w-6 text-gray-600 dark:text-gray-300" />
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 shadow-lg">
+                <MdKeyboard className="h-8 w-8 text-gray-600 dark:text-gray-300" />
               </div>
             </div>
             <h2 className="mb-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-white">
@@ -143,8 +143,8 @@ export default function KeyboardShortcuts() {
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <div className="mb-4 flex justify-center">
-            <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100 dark:bg-gray-800">
-              <MdKeyboard className="h-6 w-6 text-gray-600 dark:text-gray-300" />
+            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-gradient-to-br from-blue-600 to-indigo-600 shadow-lg">
+              <MdKeyboard className="h-8 w-8 text-gray-600 dark:text-gray-300" />
             </div>
           </div>
           <h2 className="mb-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-white">

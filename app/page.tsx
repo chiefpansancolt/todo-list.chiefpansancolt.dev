@@ -2,6 +2,7 @@ import Navigation from "@/comps/Navigation";
 import Hero from "@/comps/Hero";
 import Features from "@/comps/Features";
 import KeyboardShortcuts from "@/comps/KeyboardShortcuts";
+import SupportedLanguages from "@/comps/SupportedLanguages";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
       <main className="bg-white dark:bg-gray-900">
         <Features />
         <KeyboardShortcuts />
+        <SupportedLanguages />
 
         {/* Downloads Section */}
         <section id="downloads" className="bg-gray-50 py-24 dark:bg-gray-800">
