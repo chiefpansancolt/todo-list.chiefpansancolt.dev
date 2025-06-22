@@ -4,6 +4,7 @@ import Features from "@/comps/Features";
 import KeyboardShortcuts from "@/comps/KeyboardShortcuts";
 import SupportedLanguages from "@/comps/SupportedLanguages";
 import Downloads from "@/comps/Downloads";
+import FAQ from "@/comps/FAQ";
 
 export default function Home() {
   return (
@@ -16,6 +17,7 @@ export default function Home() {
         <KeyboardShortcuts />
         <SupportedLanguages />
         <Downloads />
+        <FAQ />
 
         {/* Changelog Section */}
         <section id="changelog" className="py-24">
