@@ -86,7 +86,8 @@ export default function Navigation() {
         <Dropdown
           arrowIcon={false}
           inline
-          label={
+          label=""
+          renderTrigger={() => (
             <div className="flex cursor-pointer items-center space-x-2 rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">
               <HiGlobeAlt className="h-4 w-4" />
               <span className="hidden sm:inline">{currentLanguage.flag}</span>
@@ -94,7 +95,7 @@ export default function Navigation() {
                 {currentLanguage.nativeName}
               </span>
             </div>
-          }
+          )}
         >
           {languages.map((language) => (
             <DropdownItem
@@ -124,7 +125,7 @@ export default function Navigation() {
 
       <NavbarCollapse>
         <NavbarLink
-          href="#"
+          href="/#features"
           onClick={(e) => {
             e.preventDefault();
             scrollToSection("features");
@@ -136,7 +137,7 @@ export default function Navigation() {
         </NavbarLink>
 
         <NavbarLink
-          href="#"
+          href="/#downloads"
           onClick={(e) => {
             e.preventDefault();
             scrollToSection("downloads");
@@ -148,7 +149,7 @@ export default function Navigation() {
         </NavbarLink>
 
         <NavbarLink
-          href="#"
+          href="/changelog"
           onClick={(e) => {
             e.preventDefault();
             scrollToSection("changelog");

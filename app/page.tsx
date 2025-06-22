@@ -3,6 +3,7 @@ import Hero from "@/comps/Hero";
 import Features from "@/comps/Features";
 import KeyboardShortcuts from "@/comps/KeyboardShortcuts";
 import SupportedLanguages from "@/comps/SupportedLanguages";
+import Downloads from "@/comps/Downloads";
 
 export default function Home() {
   return (
@@ -14,59 +15,7 @@ export default function Home() {
         <Features />
         <KeyboardShortcuts />
         <SupportedLanguages />
-
-        {/* Downloads Section */}
-        <section id="downloads" className="bg-gray-50 py-24 dark:bg-gray-800">
-          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div className="text-center">
-              <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl dark:text-white">
-                Download for Your Platform
-              </h2>
-              <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-                Available for Mac, Windows, and Linux
-              </p>
-            </div>
-
-            <div className="mt-12 grid grid-cols-1 gap-8 sm:grid-cols-3">
-              {/* Platform download cards - will be expanded later */}
-              <div className="rounded-lg bg-white p-6 text-center shadow-lg dark:bg-gray-700">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  macOS
-                </h3>
-                <p className="mt-2 text-gray-600 dark:text-gray-300">
-                  macOS 10.15 or later
-                </p>
-                <button className="mt-4 rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
-                  Download
-                </button>
-              </div>
-
-              <div className="rounded-lg bg-white p-6 text-center shadow-lg dark:bg-gray-700">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  Windows
-                </h3>
-                <p className="mt-2 text-gray-600 dark:text-gray-300">
-                  Windows 10 or later
-                </p>
-                <button className="mt-4 rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
-                  Download
-                </button>
-              </div>
-
-              <div className="rounded-lg bg-white p-6 text-center shadow-lg dark:bg-gray-700">
-                <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  Linux
-                </h3>
-                <p className="mt-2 text-gray-600 dark:text-gray-300">
-                  Ubuntu 18.04+ or equivalent
-                </p>
-                <button className="mt-4 rounded-lg bg-blue-600 px-4 py-2 text-white hover:bg-blue-700">
-                  Download
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
+        <Downloads />
 
         {/* Changelog Section */}
         <section id="changelog" className="py-24">
