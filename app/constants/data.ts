@@ -238,6 +238,13 @@ export const faqData: FAQItem[] = [
     category: "general",
   },
   {
+    id: "signing",
+    question: "is the app Signed for Windows or Mac?",
+    answer:
+      "No, the app is not signed for Windows or Mac. This means you may encounter security warnings when installing on these platforms. We recommend downloading from our official GitHub releases page or this website, to ensure you have the latest version. We will work in the future to sign the app for better security and trust.",
+    category: "technical",
+  },
+  {
     id: "keyboard-shortcuts",
     question: "Are keyboard shortcuts customizable?",
     answer:
