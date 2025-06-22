@@ -1,9 +1,7 @@
 "use client";
 
 import {
-  DarkThemeToggle,
   Dropdown,
-  DropdownHeader,
   DropdownItem,
   Navbar,
   NavbarBrand,
@@ -13,12 +11,14 @@ import {
 } from "flowbite-react";
 import Image from "next/image";
 import { useState } from "react";
+import { HiCollection } from "react-icons/hi";
 import {
-  HiGlobeAlt,
-  HiDownload,
-  HiCollection,
-  HiDocumentText,
-} from "react-icons/hi";
+  FaKeyboard,
+  FaQuestion,
+  FaDownload,
+  FaFileCode,
+  FaGlobe,
+} from "react-icons/fa6";
 
 interface Language {
   code: string;
@@ -89,7 +89,7 @@ export default function Navigation() {
           label=""
           renderTrigger={() => (
             <div className="flex cursor-pointer items-center space-x-2 rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">
-              <HiGlobeAlt className="h-4 w-4" />
+              <FaGlobe className="h-4 w-4" />
               <span className="hidden sm:inline">{currentLanguage.flag}</span>
               <span className="hidden md:inline">
                 {currentLanguage.nativeName}
@@ -137,6 +137,18 @@ export default function Navigation() {
         </NavbarLink>
 
         <NavbarLink
+          href="/#shortcuts"
+          onClick={(e) => {
+            e.preventDefault();
+            scrollToSection("shortcuts");
+          }}
+          className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+        >
+          <FaKeyboard className="h-4 w-4" />
+          <span>Shortcuts</span>
+        </NavbarLink>
+
+        <NavbarLink
           href="/#downloads"
           onClick={(e) => {
             e.preventDefault();
@@ -144,19 +156,27 @@ export default function Navigation() {
           }}
           className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
         >
-          <HiDownload className="h-4 w-4" />
+          <FaDownload className="h-4 w-4" />
           <span>Downloads</span>
         </NavbarLink>
 
         <NavbarLink
-          href="/changelog"
+          href="/#faq"
           onClick={(e) => {
             e.preventDefault();
-            scrollToSection("changelog");
+            scrollToSection("faq");
           }}
           className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
         >
-          <HiDocumentText className="h-4 w-4" />
+          <FaQuestion className="h-4 w-4" />
+          <span>FAQ</span>
+        </NavbarLink>
+
+        <NavbarLink
+          href="/changelog"
+          className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+        >
+          <FaFileCode className="h-4 w-4" />
           <span>Changelog</span>
         </NavbarLink>
       </NavbarCollapse>
