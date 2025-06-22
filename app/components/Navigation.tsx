@@ -11,6 +11,7 @@ import {
 } from "flowbite-react";
 import Image from "next/image";
 import { useState } from "react";
+import { usePathname } from "next/navigation";
 import { HiCollection } from "react-icons/hi";
 import {
   FaKeyboard,
@@ -27,6 +28,7 @@ export default function Navigation() {
   const [currentLanguage, setCurrentLanguage] = useState<Language>(
     languages[0],
   );
+  const pathname = usePathname();
 
   const handleLanguageChange = (language: Language) => {
     setCurrentLanguage(language);
@@ -40,6 +42,8 @@ export default function Navigation() {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  const isHomePage = pathname === "/";
 
   const navigationItems = [
     {
@@ -144,7 +148,7 @@ export default function Navigation() {
               key={item.label}
               href={item.href}
               onClick={
-                item.sectionId
+                item.sectionId && isHomePage
                   ? (e) => {
                       e.preventDefault();
                       scrollToSection(item.sectionId);
