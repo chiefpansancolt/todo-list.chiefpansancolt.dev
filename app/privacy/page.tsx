@@ -70,7 +70,7 @@ export default function PrivacyPolicy() {
 
         <section className="mb-8">
           <h2 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
-            Information We Don't Collect
+            Information We Don&apos;t Collect
           </h2>
           <p className="mb-4 text-gray-700 dark:text-gray-300">
             Unlike many applications, we explicitly do NOT collect:
@@ -159,7 +159,9 @@ export default function PrivacyPolicy() {
             Since all data remains on your device:
           </p>
           <ul className="list-inside list-disc space-y-2 text-gray-700 dark:text-gray-300">
-            <li>Data security depends on your device's security measures</li>
+            <li>
+              Data security depends on your device&apos;s security measures
+            </li>
             <li>We recommend using device encryption and strong passwords</li>
             <li>Regular backups of your exported data are advised</li>
             <li>No data transmission means no interception risks</li>

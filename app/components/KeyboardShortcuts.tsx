@@ -13,11 +13,9 @@ import {
   type KeyboardKeyProps,
 } from "@/utils/keyboard";
 
-const KeyboardKey: React.FC<KeyboardKeyProps> = ({
-  keyContent,
-  category,
-  className,
-}) => <kbd className={getKeyboardKeyClasses(className)}>{keyContent}</kbd>;
+const KeyboardKey: React.FC<KeyboardKeyProps> = ({ keyContent, className }) => (
+  <kbd className={getKeyboardKeyClasses(className)}>{keyContent}</kbd>
+);
 
 export default function KeyboardShortcuts() {
   const [isMac, setIsMac] = useState(false);
@@ -96,12 +94,7 @@ export default function KeyboardShortcuts() {
                         <div className="mb-2 flex flex-wrap gap-1">
                           {shortcut.keys.map((key, keyIndex) => (
                             <span key={keyIndex} className="flex items-center">
-                              <KeyboardKey
-                                keyContent={key}
-                                category={
-                                  shortcut.category as keyof typeof shortcutCategories
-                                }
-                              />
+                              <KeyboardKey keyContent={key} />
                               {keyIndex < shortcut.keys.length - 1 && (
                                 <span className="mx-1 text-gray-400 dark:text-gray-500">
                                   +

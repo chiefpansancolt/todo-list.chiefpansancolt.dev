@@ -1,8 +1,6 @@
 "use client";
 
 import {
-  Dropdown,
-  DropdownItem,
   Navbar,
   NavbarBrand,
   NavbarCollapse,
@@ -10,7 +8,6 @@ import {
   NavbarToggle,
 } from "flowbite-react";
 import Image from "next/image";
-import { useState } from "react";
 import { usePathname } from "next/navigation";
 import { HiCollection } from "react-icons/hi";
 import {
@@ -18,23 +15,10 @@ import {
   FaQuestion,
   FaDownload,
   FaFileCode,
-  FaGlobe,
 } from "react-icons/fa6";
 
-import type { Language } from "@/types/index";
-import { languages } from "@/constants/platforms";
-
 export default function Navigation() {
-  const [currentLanguage, setCurrentLanguage] = useState<Language>(
-    languages[0],
-  );
   const pathname = usePathname();
-
-  const handleLanguageChange = (language: Language) => {
-    setCurrentLanguage(language);
-    // TODO: Implement actual language switching logic
-    console.log("Switching to language:", language.code);
-  };
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -98,44 +82,6 @@ export default function Navigation() {
       </NavbarBrand>
 
       <div className="flex items-center space-x-3 md:order-2">
-        {/* Language Switcher - Commented out for now */}
-        {/* <Dropdown
-          arrowIcon={false}
-          inline
-          label=""
-          renderTrigger={() => (
-            <div className="flex cursor-pointer items-center space-x-2 rounded-lg p-2 text-sm text-gray-500 hover:bg-gray-100 dark:text-gray-400 dark:hover:bg-gray-700">
-              <FaGlobe className="h-4 w-4" />
-              <span className="hidden sm:inline">{currentLanguage.flag}</span>
-              <span className="hidden md:inline">
-                {currentLanguage.nativeName}
-              </span>
-            </div>
-          )}
-        >
-          {languages.map((language) => (
-            <DropdownItem
-              key={language.code}
-              onClick={() => handleLanguageChange(language)}
-              className={`flex items-center space-x-3 ${
-                currentLanguage.code === language.code
-                  ? "bg-gray-100 dark:bg-gray-700"
-                  : ""
-              }`}
-            >
-              <span className="text-lg">{language.flag}</span>
-              <div className="flex flex-col">
-                <span className="text-sm font-medium">
-                  {language.nativeName}
-                </span>
-                <span className="text-xs text-gray-500 dark:text-gray-400">
-                  {language.name}
-                </span>
-              </div>
-            </DropdownItem>
-          ))}
-        </Dropdown> */}
-
         <NavbarToggle className="cursor-pointer" />
       </div>
 

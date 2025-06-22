@@ -2,7 +2,7 @@ import Navigation from "@/comps/Navigation";
 import Footer from "@/comps/Footer";
 import type { PageLayoutProps } from "@/types/index";
 
-export default function PageLayout({ children, metadata }: PageLayoutProps) {
+export default function PageLayout({ children }: PageLayoutProps) {
   return (
     <>
       <Navigation />

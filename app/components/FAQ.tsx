@@ -50,9 +50,9 @@ export default function FAQ() {
             Frequently Asked Questions
           </h2>
           <p className="mx-auto mb-8 max-w-2xl text-lg text-gray-600 dark:text-gray-300">
-            Everything you need to know about the Todo List Desktop app. Can't
-            find what you're looking for? Feel free to reach out to our Discord
-            Server.
+            Everything you need to know about the Todo List Desktop app.
+            Can&apos;t find what you&apos;re looking for? Feel free to reach out
+            to our Discord Server.
           </p>
         </div>
 
@@ -66,8 +66,8 @@ export default function FAQ() {
             Still Have Questions?
           </h3>
           <p className="mb-6 text-gray-600 dark:text-gray-300">
-            We're here to help! Reach out on our Discord Server for a community
-            to help.
+            We&apos;re here to help! Reach out on our Discord Server for a
+            community to help.
           </p>
           <div className="flex flex-col justify-center space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
             <a

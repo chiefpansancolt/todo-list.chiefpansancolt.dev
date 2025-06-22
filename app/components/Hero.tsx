@@ -4,7 +4,7 @@ import { Button } from "flowbite-react";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 
-import type { Platform, LinuxFormat, GitHubRelease } from "@/types/index";
+import type { Platform, GitHubRelease } from "@/types/index";
 import { platformInfo } from "@/constants/platforms";
 import {
   detectPlatform,

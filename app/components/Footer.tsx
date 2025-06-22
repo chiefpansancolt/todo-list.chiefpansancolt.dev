@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 import { FaGithub, FaTwitter, FaDiscord } from "react-icons/fa6";
 
 import { getCurrentYear } from "@/utils/format";
@@ -12,7 +13,7 @@ export default function Footer() {
       <div className="mx-auto max-w-screen-xl p-4 py-6 md:p-8 lg:p-10">
         <div className="grid grid-cols-2 gap-8 lg:grid-cols-6">
           <div className="col-span-2">
-            <a
+            <Link
               href="/"
               className="mb-2 flex items-center text-2xl font-semibold text-gray-900 sm:mb-0 dark:text-white"
             >
@@ -24,7 +25,7 @@ export default function Footer() {
                 height={32}
               />
               Todo List
-            </a>
+            </Link>
             <p className="my-4 font-light text-gray-500 dark:text-gray-400">
               A powerful yet simple todo list app for Mac, Windows, and Linux.
               Find the perfect middle ground between simple and complex task
@@ -73,29 +74,29 @@ export default function Footer() {
             </h2>
             <ul className="text-gray-500 dark:text-gray-400">
               <li className="mb-4">
-                <a href="/#features" className="hover:underline">
+                <Link href="/#features" className="hover:underline">
                   Features
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a href="/#shortcuts" className="hover:underline">
+                <Link href="/#shortcuts" className="hover:underline">
                   Shortcuts
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a href="/#languages" className="hover:underline">
+                <Link href="/#languages" className="hover:underline">
                   Languages
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a
+                <Link
                   href="/changelog"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:underline"
                 >
                   Changelog
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -126,9 +127,9 @@ export default function Footer() {
                 </a>
               </li>
               <li className="mb-4">
-                <a href="/#faq" className="hover:underline">
+                <Link href="/#faq" className="hover:underline">
                   FAQ
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
                 <a
@@ -169,14 +170,14 @@ export default function Footer() {
                 </a>
               </li>
               <li className="mb-4">
-                <a href="/privacy" className="hover:underline">
+                <Link href="/privacy" className="hover:underline">
                   Privacy Policy
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a href="/terms" className="hover:underline">
+                <Link href="/terms" className="hover:underline">
                   Terms of Service
-                </a>
+                </Link>
               </li>
             </ul>
           </div>
@@ -187,19 +188,19 @@ export default function Footer() {
             </h2>
             <ul className="text-gray-500 dark:text-gray-400">
               <li className="mb-4">
-                <a href="/#downloads" className="hover:underline">
+                <Link href="/#downloads" className="hover:underline">
                   macOS
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a href="/#downloads" className="hover:underline">
+                <Link href="/#downloads" className="hover:underline">
                   Windows
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
-                <a href="/#downloads" className="hover:underline">
+                <Link href="/#downloads" className="hover:underline">
                   Linux
-                </a>
+                </Link>
               </li>
               <li className="mb-4">
                 <a

@@ -104,7 +104,7 @@ export default function TermsOfService() {
 
         <section className="mb-8">
           <h2 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
-            What's Free and What's Not
+            What&apos;s Free and What&apos;s Not
           </h2>
           <div className="mb-4 rounded-lg bg-green-50 p-4 dark:bg-green-900/20">
             <h3 className="mb-2 font-semibold text-green-800 dark:text-green-200">
@@ -187,8 +187,8 @@ export default function TermsOfService() {
           </h2>
           <div className="mb-4 rounded-lg bg-yellow-50 p-4 dark:bg-yellow-900/20">
             <p className="text-sm text-yellow-800 dark:text-yellow-200">
-              <strong>Important:</strong> This software is provided "as is"
-              without warranties of any kind.
+              <strong>Important:</strong> This software is provided &quot;as
+              is&quot; without warranties of any kind.
             </p>
           </div>
           <p className="mb-4 text-gray-700 dark:text-gray-300">
