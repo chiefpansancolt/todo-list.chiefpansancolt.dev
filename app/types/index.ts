@@ -70,6 +70,13 @@ export interface Shortcut {
   category: "task" | "mode" | "data" | "navigation";
 }
 
+export interface ShortcutConfig {
+  keys: string[];
+  description: string;
+  category: "task" | "mode" | "data" | "navigation";
+  hasShift?: boolean;
+}
+
 export interface FAQItem {
   id: string;
   question: string;
@@ -102,4 +109,21 @@ export interface Version {
   changes: ChangeItem[];
   highlights?: string[];
   isInitialRelease?: boolean;
+}
+
+export interface PageHeaderProps {
+  icon: React.ComponentType<{ className?: string }>;
+  iconColor?: string;
+  title: string;
+  description: string;
+  lastUpdated?: string;
+  children?: React.ReactNode;
+}
+
+export interface PageLayoutProps {
+  children: React.ReactNode;
+  metadata?: {
+    title: string;
+    description: string;
+  };
 }

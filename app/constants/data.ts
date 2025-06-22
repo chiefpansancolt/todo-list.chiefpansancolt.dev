@@ -5,7 +5,7 @@ import {
   HiDatabase,
   HiGlobeAlt,
 } from "react-icons/hi";
-import type { FeatureCategory, FAQItem, Shortcut } from "@/types/index";
+import type { FeatureCategory, FAQItem, ShortcutConfig } from "@/types/index";
 
 export const featuresData: FeatureCategory[] = [
   {
@@ -253,14 +253,6 @@ export const faqData: FAQItem[] = [
   },
 ];
 
-// Keyboard shortcuts configuration (raw data without JSX)
-export interface ShortcutConfig {
-  keys: string[];
-  description: string;
-  category: "task" | "mode" | "data" | "navigation";
-  hasShift?: boolean;
-}
-
 export const shortcutsConfig: ShortcutConfig[] = [
   {
     keys: ["mod", "N"],
@@ -301,7 +293,6 @@ export const shortcutsConfig: ShortcutConfig[] = [
   },
 ];
 
-// Shortcut category configurations
 export const shortcutCategories = {
   task: {
     title: "Task Management",
