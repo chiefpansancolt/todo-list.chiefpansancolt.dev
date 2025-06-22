@@ -348,7 +348,11 @@ export default function Downloads() {
               </div>
             </div>
 
-            <div className="mt-12 p-6">
+            <p className="mt-4 text-center text-gray-100">
+              Free download • No account required • Works offline
+            </p>
+
+            <div className="mt-8 p-6">
               <div className="text-center">
                 <h3 className="text-lg font-medium text-gray-900 dark:text-white">
                   Need Help?
