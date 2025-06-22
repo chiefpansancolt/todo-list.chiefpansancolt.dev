@@ -2,105 +2,40 @@
 
 import { FaDiscord } from "react-icons/fa6";
 import { HiQuestionMarkCircle } from "react-icons/hi";
-
-interface FAQItem {
-  id: string;
-  question: string;
-  answer: string;
-  category: "general" | "technical" | "data" | "support";
-}
-
-const faqData: FAQItem[] = [
-  {
-    id: "free-app",
-    question: "Is the Todo List app completely free?",
-    answer:
-      "Yes! The Todo List app is completely free to download and use. There are no hidden fees, subscriptions, or premium features. We believe task management should be accessible to everyone.",
-    category: "general",
-  },
-  {
-    id: "data-storage",
-    question: "Where is my data stored and is it private?",
-    answer:
-      "All your data is stored locally on your device using secure file-based storage. We don't collect, store, or have access to any of your personal information or tasks. Your privacy is completely protected since everything stays on your computer.",
-    category: "data",
-  },
-  {
-    id: "platform-differences",
-    question:
-      "Are there any differences between the Mac, Windows, and Linux versions?",
-    answer:
-      "No, all platform versions have identical features and functionality. The app is built to provide a consistent experience across all operating systems, with only minor visual adjustments to match each platform's design guidelines.",
-    category: "technical",
-  },
-  {
-    id: "offline-functionality",
-    question: "Does the app work offline?",
-    answer:
-      "Absolutely! The Todo List app is designed to work completely offline. Since all data is stored locally, you can create, edit, and manage your tasks without any internet connection. No cloud dependency means no interruptions to your productivity.",
-    category: "technical",
-  },
-  {
-    id: "data-backup",
-    question: "How can I backup or sync my data between devices?",
-    answer:
-      "You can export your data as JSON files for backup purposes. While the app doesn't include automatic cloud sync, you can manually transfer your exported data between devices or store backups in your preferred cloud storage service.",
-    category: "data",
-  },
-  {
-    id: "system-requirements",
-    question: "What are the minimum system requirements?",
-    answer:
-      "Mac: macOS 15 or later (Apple Silicon support). Windows: Windows 10 or later (64-bit). Linux: Ubuntu 18.04+ or equivalent distributions. The app is lightweight and should run smoothly on most modern systems.",
-    category: "technical",
-  },
-  {
-    id: "updates",
-    question: "How do I get updates for the app?",
-    answer:
-      "New versions are released on our GitHub releases page. Monitor our Discord Announcment channel for notifications of new releases. Presently we do not support Auto-updates, so you'll need to manually download and install new versions.",
-    category: "support",
-  },
-  {
-    id: "vs-other-apps",
-    question: "How is this different from other todo apps?",
-    answer:
-      "Our app fills the gap between overly simple and unnecessarily complex task managers. We provide essential features like categories, priorities, due dates, and keyboard shortcuts without overwhelming you with features you don't need. It's the perfect middle ground for productive task management.",
-    category: "general",
-  },
-  {
-    id: "data-import",
-    question: "Can I import tasks from other todo apps?",
-    answer:
-      "Currently, you can import data from JSON files (including previous exports from our app). Depending on feedback and request volume, we may consider adding support for importing from other popular todo apps in the future.",
-    category: "data",
-  },
-  {
-    id: "multiple-languages",
-    question: "How do I change the app language?",
-    answer:
-      "The app supports 10 languages that you can switch between instantly without restarting. Look for the language/globe icon in the app settings, and your preference will be saved automatically for future use.",
-    category: "general",
-  },
-  {
-    id: "keyboard-shortcuts",
-    question: "Are keyboard shortcuts customizable?",
-    answer:
-      "Currently, the app comes with a comprehensive set of pre-defined keyboard shortcuts optimized for productivity. Custom shortcut configuration is not planned but may be based on user feedback.",
-    category: "technical",
-  },
-  {
-    id: "support-contact",
-    question: "How can I get help or report issues?",
-    answer:
-      "For support, bug reports, or feature requests, please visit our discord server where you can report bugs or join discussions. We actively monitor and respond to all inquiries.",
-    category: "support",
-  },
-];
+import { faqData } from "@/constants/data";
 
 export default function FAQ() {
   const leftColumnFAQs = faqData.filter((_, index) => index % 2 === 0);
   const rightColumnFAQs = faqData.filter((_, index) => index % 2 === 1);
+
+  const QuestionIcon = () => (
+    <svg
+      className="mr-2 h-5 w-5 flex-shrink-0 text-gray-500 dark:text-gray-400"
+      fill="currentColor"
+      viewBox="0 0 20 20"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        fillRule="evenodd"
+        d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
+        clipRule="evenodd"
+      />
+    </svg>
+  );
+
+  const FAQColumn = ({ faqs }: { faqs: typeof faqData }) => (
+    <div>
+      {faqs.map((faq) => (
+        <div key={faq.id} className="mb-10">
+          <h3 className="mb-4 flex items-center text-lg font-medium text-gray-900 dark:text-white">
+            <QuestionIcon />
+            {faq.question}
+          </h3>
+          <p className="text-gray-500 dark:text-gray-400">{faq.answer}</p>
+        </div>
+      ))}
+    </div>
+  );
 
   return (
     <section id="faq" className="bg-white py-24 dark:bg-gray-800">
@@ -122,51 +57,8 @@ export default function FAQ() {
         </div>
 
         <div className="grid border-t border-gray-200 pt-8 text-left md:grid-cols-2 md:gap-16 dark:border-gray-700">
-          <div>
-            {leftColumnFAQs.map((faq) => (
-              <div key={faq.id} className="mb-10">
-                <h3 className="mb-4 flex items-center text-lg font-medium text-gray-900 dark:text-white">
-                  <svg
-                    className="mr-2 h-5 w-5 flex-shrink-0 text-gray-500 dark:text-gray-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  {faq.question}
-                </h3>
-                <p className="text-gray-500 dark:text-gray-400">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-
-          <div>
-            {rightColumnFAQs.map((faq) => (
-              <div key={faq.id} className="mb-10">
-                <h3 className="mb-4 flex items-center text-lg font-medium text-gray-900 dark:text-white">
-                  <svg
-                    className="mr-2 h-5 w-5 flex-shrink-0 text-gray-500 dark:text-gray-400"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-8-3a1 1 0 00-.867.5 1 1 0 11-1.731-1A3 3 0 0113 8a3.001 3.001 0 01-2 2.83V11a1 1 0 11-2 0v-1a1 1 0 011-1 1 1 0 100-2zm0 8a1 1 0 100-2 1 1 0 000 2z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  {faq.question}
-                </h3>
-                <p className="text-gray-500 dark:text-gray-400">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
+          <FAQColumn faqs={leftColumnFAQs} />
+          <FAQColumn faqs={rightColumnFAQs} />
         </div>
 
         <div className="mt-12 rounded-lg p-8 text-center">

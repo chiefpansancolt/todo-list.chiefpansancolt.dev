@@ -2,85 +2,62 @@
 
 import { Button } from "flowbite-react";
 import Image from "next/image";
-import { FaApple, FaWindows, FaLinux } from "react-icons/fa";
 import { useEffect, useState } from "react";
 
-type Platform = "mac" | "windows" | "linux";
-
-interface PlatformInfo {
-  name: string;
-  label: string;
-  requirements: string;
-  icon: React.ComponentType<{ className?: string }>;
-  color: "light" | "blue" | "warning";
-  customClasses?: string;
-}
-
-const platformInfo: Record<Platform, PlatformInfo> = {
-  mac: {
-    name: "macOS",
-    label: "Download for Mac",
-    requirements: "macOS 15 or later",
-    icon: FaApple,
-    color: "light",
-    customClasses:
-      "bg-white border-gray-300 text-gray-900 hover:bg-gray-50 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100",
-  },
-  windows: {
-    name: "Windows",
-    label: "Download for Windows",
-    requirements: "Windows 10 or later",
-    icon: FaWindows,
-    color: "blue",
-  },
-  linux: {
-    name: "Linux",
-    label: "Download for Linux",
-    requirements: "Ubuntu 18.04+ or equivalent",
-    icon: FaLinux,
-    color: "warning",
-    customClasses:
-      "bg-orange-500 text-white hover:bg-orange-600 focus:ring-orange-300 dark:bg-orange-500 dark:hover:bg-orange-600",
-  },
-};
+import type { Platform, LinuxFormat, GitHubRelease } from "@/types/index";
+import { platformInfo } from "@/constants/platforms";
+import {
+  detectPlatform,
+  handleDownload as handlePlatformDownload,
+} from "@/utils/platform";
+import { fetchLatestRelease } from "@/utils/github";
 
 export default function Hero() {
   const [detectedPlatform, setDetectedPlatform] = useState<Platform>("windows");
+  const [latestRelease, setLatestRelease] = useState<GitHubRelease | null>(
+    null,
+  );
   const [isClient, setIsClient] = useState(false);
 
   useEffect(() => {
     setIsClient(true);
-
-    const detectPlatform = (): Platform => {
-      if (typeof window === "undefined") return "windows";
-
-      const userAgent = window.navigator.userAgent.toLowerCase();
-      const platform = window.navigator.platform?.toLowerCase() || "";
-
-      if (userAgent.includes("mac") || platform.includes("mac")) {
-        return "mac";
-      } else if (userAgent.includes("linux") || platform.includes("linux")) {
-        return "linux";
-      } else {
-        return "windows";
-      }
-    };
-
     setDetectedPlatform(detectPlatform());
   }, []);
 
-  const handleDownload = (platform: string) => {
-    // TODO: Implement actual download logic
-    console.log(`Downloading for ${platform}`);
+  useEffect(() => {
+    const loadLatestRelease = async () => {
+      try {
+        const release = await fetchLatestRelease();
+        setLatestRelease(release);
+      } catch (err) {
+        console.error("Error fetching latest release:", err);
+      }
+    };
+
+    loadLatestRelease();
+  }, []);
+
+  const handleDownload = () => {
+    if (detectPlatform() === "linux") {
+      scrollToDownloads();
+    } else {
+      handlePlatformDownload(
+        detectPlatform(),
+        latestRelease || undefined,
+        undefined,
+      );
+    }
   };
 
-  const getOtherPlatforms = (): Platform[] => {
-    return (Object.keys(platformInfo) as Platform[]).filter(
-      (p) => p !== detectedPlatform,
-    );
+  const scrollToDownloads = () => {
+    const element = document.getElementById("downloads");
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
   };
 
-  const PlatformIcon = platformInfo[detectedPlatform].icon;
+  const currentPlatformInfo = platformInfo[detectedPlatform];
+  const PlatformIcon = currentPlatformInfo.icon;
 
   return (
     <section className="bg-white dark:bg-gray-900">
@@ -98,25 +75,43 @@ export default function Hero() {
 
           {isClient && (
             <>
-              <div className="mb-4">
+              <div className="mb-4 flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
                 <Button
                   color={
                     detectedPlatform === "linux"
                       ? "light"
-                      : platformInfo[detectedPlatform].color
+                      : currentPlatformInfo.color
                   }
                   size="lg"
-                  onClick={() => handleDownload(detectedPlatform)}
-                  className={`inline-flex items-center justify-center ${platformInfo[detectedPlatform].customClasses || ""}`}
+                  onClick={() => handleDownload}
+                  className={`inline-flex cursor-pointer items-center justify-center ${currentPlatformInfo.customClasses || ""}`}
                 >
                   <PlatformIcon className="mr-3 h-5 w-5" />
-                  {platformInfo[detectedPlatform].label}
+                  {currentPlatformInfo.label}
+                </Button>
+
+                <Button
+                  color="gray"
+                  size="lg"
+                  onClick={scrollToDownloads}
+                  className="inline-flex cursor-pointer items-center justify-center"
+                >
+                  View All Platforms
                 </Button>
               </div>
 
               <p className="mt-4 text-sm text-gray-500 dark:text-gray-400">
-                Available for macOS 15+, Windows 11, and Linux Ubuntu 18.04+
+                Available for{" "}
+                {Object.values(platformInfo)
+                  .map((platform) => platform.name)
+                  .join(", ")}
               </p>
+
+              <div className="mt-6 flex items-center space-x-6 text-sm text-gray-500 dark:text-gray-400">
+                <span className="flex items-center">✓ Free forever</span>
+                <span className="flex items-center">✓ No account required</span>
+                <span className="flex items-center">✓ Works offline</span>
+              </div>
             </>
           )}
         </div>

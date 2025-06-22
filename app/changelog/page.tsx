@@ -3,6 +3,9 @@ import Footer from "@/comps/Footer";
 import { HiSparkles, HiCog, HiCalendar, HiExternalLink } from "react-icons/hi";
 import { FaGithub, FaBug, FaDiscord } from "react-icons/fa6";
 
+import { getReleaseUrl, getReleasesUrl } from "@/utils/github";
+import { formatDate } from "@/utils/format";
+
 export const metadata = {
   title: "Changelog - Todo List Desktop App",
   description:
@@ -241,7 +244,7 @@ export default function Changelog() {
 
             <div className="mt-6 flex justify-center">
               <a
-                href="https://github.com/chiefpansancolt/todo-list/releases"
+                href={getReleasesUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center rounded-lg bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
@@ -275,16 +278,11 @@ export default function Changelog() {
                         )}
                       </div>
                       <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
-                        Released on{" "}
-                        {new Date(version.date).toLocaleDateString("en-US", {
-                          year: "numeric",
-                          month: "long",
-                          day: "numeric",
-                        })}
+                        Released on {formatDate(version.date)}
                       </p>
                     </div>
                     <a
-                      href={`https://github.com/chiefpansancolt/todo-list/releases/tag/v${version.version}`}
+                      href={getReleaseUrl(version.version)}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:ring-4 focus:ring-gray-200 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
@@ -382,7 +380,7 @@ export default function Changelog() {
             </p>
             <div className="flex flex-col justify-center space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
               <a
-                href="https://github.com/chiefpansancolt/todo-list/releases"
+                href={getReleasesUrl()}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-white hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"

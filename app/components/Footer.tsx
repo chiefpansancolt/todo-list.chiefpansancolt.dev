@@ -3,9 +3,10 @@
 import Image from "next/image";
 import { FaGithub, FaTwitter, FaDiscord } from "react-icons/fa6";
 
-export default function Footer() {
-  const currentYear = new Date().getFullYear();
+import { getCurrentYear } from "@/utils/format";
+import { getRepositoryUrl } from "@/utils/github";
 
+export default function Footer() {
   return (
     <footer className="bg-gray-50 dark:bg-gray-900">
       <div className="mx-auto max-w-screen-xl p-4 py-6 md:p-8 lg:p-10">
@@ -43,7 +44,7 @@ export default function Footer() {
               </li>
               <li>
                 <a
-                  href="https://github.com/chiefpansancolt/todo-list"
+                  href={getRepositoryUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"
@@ -159,7 +160,7 @@ export default function Footer() {
               </li>
               <li className="mb-4">
                 <a
-                  href="https://github.com/chiefpansancolt/todo-list"
+                  href={getRepositoryUrl()}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:underline"
@@ -218,7 +219,7 @@ export default function Footer() {
 
         <div className="flex flex-col items-center justify-between sm:flex-row">
           <span className="block text-sm text-gray-500 dark:text-gray-400">
-            © {currentYear}{" "}
+            © {getCurrentYear()}{" "}
             <a
               href="https://chiefpansancolt.dev"
               target="_blank"
@@ -241,7 +242,7 @@ export default function Footer() {
               <FaTwitter className="h-4 w-4" />
             </a>
             <a
-              href="https://github.com/chiefpansancolt/todo-list"
+              href={getRepositoryUrl()}
               target="_blank"
               rel="noopener noreferrer"
               className="text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white"

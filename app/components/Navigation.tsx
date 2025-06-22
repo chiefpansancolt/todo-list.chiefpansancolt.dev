@@ -20,30 +20,8 @@ import {
   FaGlobe,
 } from "react-icons/fa6";
 
-interface Language {
-  code: string;
-  name: string;
-  nativeName: string;
-  flag: string;
-}
-
-const languages: Language[] = [
-  { code: "en", name: "English", nativeName: "English", flag: "🇺🇸" },
-  { code: "es", name: "Spanish", nativeName: "Español", flag: "🇪🇸" },
-  { code: "fr", name: "French", nativeName: "Français", flag: "🇫🇷" },
-  { code: "de", name: "German", nativeName: "Deutsch", flag: "🇩🇪" },
-  { code: "pt", name: "Portuguese", nativeName: "Português", flag: "🇵🇹" },
-  { code: "ja", name: "Japanese", nativeName: "日本語", flag: "🇯🇵" },
-  {
-    code: "zh",
-    name: "Chinese Simplified",
-    nativeName: "简体中文",
-    flag: "🇨🇳",
-  },
-  { code: "ko", name: "Korean", nativeName: "한국어", flag: "🇰🇷" },
-  { code: "it", name: "Italian", nativeName: "Italiano", flag: "🇮🇹" },
-  { code: "nl", name: "Dutch", nativeName: "Nederlands", flag: "🇳🇱" },
-];
+import type { Language } from "@/types/index";
+import { languages } from "@/constants/platforms";
 
 export default function Navigation() {
   const [currentLanguage, setCurrentLanguage] = useState<Language>(
@@ -62,6 +40,39 @@ export default function Navigation() {
       element.scrollIntoView({ behavior: "smooth" });
     }
   };
+
+  const navigationItems = [
+    {
+      href: "/#features",
+      sectionId: "features",
+      icon: HiCollection,
+      label: "Features",
+    },
+    {
+      href: "/#shortcuts",
+      sectionId: "shortcuts",
+      icon: FaKeyboard,
+      label: "Shortcuts",
+    },
+    {
+      href: "/#downloads",
+      sectionId: "downloads",
+      icon: FaDownload,
+      label: "Downloads",
+    },
+    {
+      href: "/#faq",
+      sectionId: "faq",
+      icon: FaQuestion,
+      label: "FAQ",
+    },
+    {
+      href: "/changelog",
+      sectionId: null,
+      icon: FaFileCode,
+      label: "Changelog",
+    },
+  ];
 
   return (
     <Navbar
@@ -83,7 +94,8 @@ export default function Navigation() {
       </NavbarBrand>
 
       <div className="flex items-center space-x-3 md:order-2">
-        {/*<Dropdown
+        {/* Language Switcher - Commented out for now */}
+        {/* <Dropdown
           arrowIcon={false}
           inline
           label=""
@@ -118,67 +130,34 @@ export default function Navigation() {
               </div>
             </DropdownItem>
           ))}
-        </Dropdown>*/}
+        </Dropdown> */}
 
         <NavbarToggle className="cursor-pointer" />
       </div>
 
       <NavbarCollapse>
-        <NavbarLink
-          href="/#features"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToSection("features");
-          }}
-          className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
-        >
-          <HiCollection className="h-4 w-4" />
-          <span>Features</span>
-        </NavbarLink>
+        {navigationItems.map((item) => {
+          const IconComponent = item.icon;
 
-        <NavbarLink
-          href="/#shortcuts"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToSection("shortcuts");
-          }}
-          className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
-        >
-          <FaKeyboard className="h-4 w-4" />
-          <span>Shortcuts</span>
-        </NavbarLink>
-
-        <NavbarLink
-          href="/#downloads"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToSection("downloads");
-          }}
-          className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
-        >
-          <FaDownload className="h-4 w-4" />
-          <span>Downloads</span>
-        </NavbarLink>
-
-        <NavbarLink
-          href="/#faq"
-          onClick={(e) => {
-            e.preventDefault();
-            scrollToSection("faq");
-          }}
-          className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
-        >
-          <FaQuestion className="h-4 w-4" />
-          <span>FAQ</span>
-        </NavbarLink>
-
-        <NavbarLink
-          href="/changelog"
-          className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
-        >
-          <FaFileCode className="h-4 w-4" />
-          <span>Changelog</span>
-        </NavbarLink>
+          return (
+            <NavbarLink
+              key={item.label}
+              href={item.href}
+              onClick={
+                item.sectionId
+                  ? (e) => {
+                      e.preventDefault();
+                      scrollToSection(item.sectionId);
+                    }
+                  : undefined
+              }
+              className="flex items-center space-x-2 text-gray-700 hover:text-blue-600 dark:text-gray-300 dark:hover:text-blue-400"
+            >
+              <IconComponent className="h-4 w-4" />
+              <span>{item.label}</span>
+            </NavbarLink>
+          );
+        })}
       </NavbarCollapse>
     </Navbar>
   );

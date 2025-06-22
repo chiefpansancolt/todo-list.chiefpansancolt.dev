@@ -2,93 +2,16 @@
 
 import { Button, Dropdown, DropdownItem, Spinner } from "flowbite-react";
 import { useEffect, useState } from "react";
-import {
-  FaApple,
-  FaWindows,
-  FaLinux,
-  FaDownload,
-  FaChevronDown,
-  FaGithub,
-} from "react-icons/fa6";
+import { FaDownload, FaChevronDown, FaGithub } from "react-icons/fa6";
 import { HiDownload, HiExternalLink } from "react-icons/hi";
 
-type Platform = "mac" | "windows" | "linux";
-type LinuxFormat = "appimage" | "deb" | "snap";
-
-interface GitHubRelease {
-  tag_name: string;
-  name: string;
-  published_at: string;
-  html_url: string;
-}
-
-interface PlatformInfo {
-  name: string;
-  label: string;
-  requirements: string;
-  icon: React.ComponentType<{ className?: string }>;
-  color: "light" | "blue" | "orange";
-  customClasses?: string;
-}
-
-interface LinuxFormatInfo {
-  name: string;
-  extension: string;
-  description: string;
-  filename: (version: string) => string;
-}
-
-const platformInfo: Record<Platform, PlatformInfo> = {
-  mac: {
-    name: "macOS",
-    label: "Download for Mac",
-    requirements: "macOS 15 or later",
-    icon: FaApple,
-    color: "light",
-    customClasses:
-      "bg-white border-gray-300 text-gray-900 hover:bg-gray-50 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100",
-  },
-  windows: {
-    name: "Windows",
-    label: "Download for Windows",
-    requirements: "Windows 10 or later",
-    icon: FaWindows,
-    color: "blue",
-  },
-  linux: {
-    name: "Linux",
-    label: "Download for Linux",
-    requirements: "Ubuntu 18.04+ or equivalent",
-    icon: FaLinux,
-    color: "orange",
-    customClasses:
-      "bg-orange-500 text-white hover:bg-orange-600 focus:ring-orange-300 dark:bg-orange-500 dark:hover:bg-orange-600",
-  },
-};
-
-const linuxFormats: Record<LinuxFormat, LinuxFormatInfo> = {
-  appimage: {
-    name: "AppImage",
-    extension: "AppImage",
-    description: "Universal Linux package",
-    filename: (version) => `todo-list-app-${version}.AppImage`,
-  },
-  deb: {
-    name: "Debian Package",
-    extension: "deb",
-    description: "For Ubuntu/Debian based systems",
-    filename: (version) => `todo-list-app_${version}_amd64.deb`,
-  },
-  snap: {
-    name: "Snap Package",
-    extension: "snap",
-    description: "Universal Linux package manager",
-    filename: (version) => `todo-list-app_${version}_amd64.snap`,
-  },
-};
+import type { Platform, LinuxFormat, GitHubRelease } from "@/types/index";
+import { platformInfo, linuxFormats } from "@/constants/platforms";
+import { handleDownload as handlePlatformDownload } from "@/utils/platform";
+import { fetchLatestRelease } from "@/utils/github";
+import { formatDate } from "@/utils/format";
 
 export default function Downloads() {
-  const [detectedPlatform, setDetectedPlatform] = useState<Platform>("windows");
   const [isClient, setIsClient] = useState(false);
   const [latestRelease, setLatestRelease] = useState<GitHubRelease | null>(
     null,
@@ -98,38 +21,13 @@ export default function Downloads() {
 
   useEffect(() => {
     setIsClient(true);
-
-    const detectPlatform = (): Platform => {
-      if (typeof window === "undefined") return "windows";
-
-      const userAgent = window.navigator.userAgent.toLowerCase();
-      const platform = window.navigator.platform?.toLowerCase() || "";
-
-      if (userAgent.includes("mac") || platform.includes("mac")) {
-        return "mac";
-      } else if (userAgent.includes("linux") || platform.includes("linux")) {
-        return "linux";
-      } else {
-        return "windows";
-      }
-    };
-
-    setDetectedPlatform(detectPlatform());
   }, []);
 
   useEffect(() => {
-    const fetchLatestRelease = async () => {
+    const loadLatestRelease = async () => {
       try {
         setLoading(true);
-        const response = await fetch(
-          "https://api.github.com/repos/chiefpansancolt/todo-list/releases/latest",
-        );
-
-        if (!response.ok) {
-          throw new Error("Failed to fetch latest release");
-        }
-
-        const release: GitHubRelease = await response.json();
+        const release = await fetchLatestRelease();
         setLatestRelease(release);
         setError(null);
       } catch (err) {
@@ -140,53 +38,12 @@ export default function Downloads() {
       }
     };
 
-    fetchLatestRelease();
+    loadLatestRelease();
   }, []);
 
-  const constructDownloadUrl = (
-    platform: Platform,
-    linuxFormat?: LinuxFormat,
-  ): string => {
-    if (!latestRelease) return "#";
-
-    const version = latestRelease.tag_name.replace(/^v/, "");
-    const baseUrl = `https://github.com/chiefpansancolt/todo-list/releases/download/${latestRelease.tag_name}`;
-
-    switch (platform) {
-      case "windows":
-        return `${baseUrl}/todo-list-app-${version}-setup.exe`;
-      case "mac":
-        return `${baseUrl}/todo-list-app-${version}.dmg`;
-      case "linux":
-        if (!linuxFormat) return "#";
-        const filename = linuxFormats[linuxFormat].filename(version);
-        return `${baseUrl}/${filename}`;
-      default:
-        return "#";
-    }
-  };
-
   const handleDownload = (platform: Platform, linuxFormat?: LinuxFormat) => {
-    const url = constructDownloadUrl(platform, linuxFormat);
-    if (url !== "#") {
-      window.open(url, "_blank");
-    }
+    handlePlatformDownload(platform, latestRelease || undefined, linuxFormat);
   };
-
-  const getOtherPlatforms = (): Platform[] => {
-    return (Object.keys(platformInfo) as Platform[]).filter(
-      (p) => p !== detectedPlatform,
-    );
-  };
-
-  const formatFileSize = (bytes: number): string => {
-    const sizes = ["Bytes", "KB", "MB", "GB"];
-    if (bytes === 0) return "0 Bytes";
-    const i = Math.floor(Math.log(bytes) / Math.log(1024));
-    return Math.round((bytes / Math.pow(1024, i)) * 100) / 100 + " " + sizes[i];
-  };
-
-  const PlatformIcon = platformInfo[detectedPlatform].icon;
 
   return (
     <section id="downloads" className="bg-gray-50 py-24 dark:bg-gray-900">
@@ -235,7 +92,7 @@ export default function Downloads() {
             <div className="mt-6 inline-flex items-center rounded-full bg-green-100 px-4 py-2 text-sm font-medium text-green-800 dark:bg-green-900 dark:text-green-200">
               <FaGithub className="mr-2 h-4 w-4" />
               Latest version: {latestRelease.tag_name} •{" "}
-              {new Date(latestRelease.published_at).toLocaleDateString()}
+              {formatDate(latestRelease.published_at)}
             </div>
           )}
         </div>
@@ -243,17 +100,18 @@ export default function Downloads() {
         {isClient && latestRelease && (
           <div className="mt-12">
             <div className="grid grid-cols-1 gap-8 sm:grid-cols-3">
+              {/* Mac Platform */}
               <div className="rounded-lg bg-white p-6 text-center shadow-lg transition-all hover:shadow-xl dark:bg-gray-700">
                 <div className="mb-4 flex justify-center">
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-gray-100 dark:bg-gray-600">
-                    <FaApple className="h-6 w-6 text-gray-600 dark:text-gray-300" />
+                    <platformInfo.mac.icon className="h-6 w-6 text-gray-600 dark:text-gray-300" />
                   </div>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  macOS
+                  {platformInfo.mac.name}
                 </h3>
                 <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
-                  macOS 15 or later
+                  {platformInfo.mac.requirements}
                 </p>
                 <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
                   Apple Silicon support only
@@ -270,17 +128,18 @@ export default function Downloads() {
                 </Button>
               </div>
 
+              {/* Windows Platform */}
               <div className="rounded-lg bg-white p-6 text-center shadow-lg transition-all hover:shadow-xl dark:bg-gray-700">
                 <div className="mb-4 flex justify-center">
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100 dark:bg-blue-900">
-                    <FaWindows className="h-6 w-6 text-blue-600 dark:text-blue-300" />
+                    <platformInfo.windows.icon className="h-6 w-6 text-blue-600 dark:text-blue-300" />
                   </div>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  Windows
+                  {platformInfo.windows.name}
                 </h3>
                 <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
-                  Windows 10 or later
+                  {platformInfo.windows.requirements}
                 </p>
                 <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
                   64-bit installer
@@ -297,17 +156,18 @@ export default function Downloads() {
                 </Button>
               </div>
 
+              {/* Linux Platform */}
               <div className="rounded-lg bg-white p-6 text-center shadow-lg transition-all hover:shadow-xl dark:bg-gray-700">
                 <div className="mb-4 flex justify-center">
                   <div className="flex h-12 w-12 items-center justify-center rounded-full bg-orange-500">
-                    <FaLinux className="h-6 w-6 text-gray-200" />
+                    <platformInfo.linux.icon className="h-6 w-6 text-gray-200" />
                   </div>
                 </div>
                 <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
-                  Linux
+                  {platformInfo.linux.name}
                 </h3>
                 <p className="mt-2 text-sm text-gray-600 dark:text-gray-300">
-                  Ubuntu 18.04+ or equivalent
+                  {platformInfo.linux.requirements}
                 </p>
                 <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
                   Multiple package formats
