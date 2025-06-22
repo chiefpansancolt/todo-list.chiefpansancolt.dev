@@ -189,7 +189,7 @@ export default function Downloads() {
   const PlatformIcon = platformInfo[detectedPlatform].icon;
 
   return (
-    <section id="downloads" className="bg-gray-50 py-24 dark:bg-gray-800">
+    <section id="downloads" className="bg-gray-50 py-24 dark:bg-gray-900">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <div className="mb-4 flex justify-center">

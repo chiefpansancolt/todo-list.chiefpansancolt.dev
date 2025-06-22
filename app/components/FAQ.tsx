@@ -103,7 +103,7 @@ export default function FAQ() {
   const rightColumnFAQs = faqData.filter((_, index) => index % 2 === 1);
 
   return (
-    <section id="faq" className="bg-white py-24 dark:bg-gray-900">
+    <section id="faq" className="bg-white py-24 dark:bg-gray-800">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <div className="mb-4 flex justify-center">

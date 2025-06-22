@@ -118,7 +118,7 @@ export default function KeyboardShortcuts() {
 
   if (!isClient) {
     return (
-      <section id="shortcuts" className="bg-white py-24 dark:bg-gray-900">
+      <section id="shortcuts" className="bg-white py-24 dark:bg-gray-800">
         <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="mb-4 flex justify-center">
@@ -139,7 +139,7 @@ export default function KeyboardShortcuts() {
   }
 
   return (
-    <section id="shortcuts" className="bg-white py-24 dark:bg-gray-900">
+    <section id="shortcuts" className="bg-white py-24 dark:bg-gray-800">
       <div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
         <div className="text-center">
           <div className="mb-4 flex justify-center">
@@ -178,7 +178,7 @@ export default function KeyboardShortcuts() {
                   {categoryShortcuts.map((shortcut, index) => (
                     <div
                       key={index}
-                      className="rounded-lg border border-gray-200 bg-gray-50 p-4 transition-all hover:border-gray-300 hover:shadow-md dark:border-gray-700 dark:bg-gray-800 dark:hover:border-gray-600"
+                      className="rounded-lg border border-gray-200 bg-gray-50 p-4 transition-all hover:border-gray-300 hover:shadow-md dark:border-gray-700 dark:bg-gray-950 dark:hover:border-gray-600"
                     >
                       <div className="mb-2 flex flex-wrap gap-1">
                         {shortcut.keys.map((key, keyIndex) => (
@@ -206,7 +206,7 @@ export default function KeyboardShortcuts() {
           })}
         </div>
 
-        <div className="mt-12 rounded-lg bg-gray-50 p-6 text-center dark:bg-gray-800">
+        <div className="mt-8 rounded-lg bg-gray-50 p-6 text-center dark:bg-gray-800">
           <p className="text-sm text-gray-600 dark:text-gray-400">
             <strong>Pro Tip:</strong> Most shortcuts work from anywhere in the
             app. Press <KeyboardKey keyContent="Esc" category="navigation" /> to
