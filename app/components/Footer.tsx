@@ -168,13 +168,13 @@ export default function Footer() {
                 </a>
               </li>
               <li className="mb-4">
-                <a
-                  href="https://chiefpansancolt.dev/privacy"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="hover:underline"
-                >
-                  Privacy
+                <a href="/privacy" className="hover:underline">
+                  Privacy Policy
+                </a>
+              </li>
+              <li className="mb-4">
+                <a href="/terms" className="hover:underline">
+                  Terms of Service
                 </a>
               </li>
             </ul>
