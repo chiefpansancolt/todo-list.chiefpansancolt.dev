@@ -83,7 +83,7 @@ export default function Navigation() {
       </NavbarBrand>
 
       <div className="flex items-center space-x-3 md:order-2">
-        <Dropdown
+        {/*<Dropdown
           arrowIcon={false}
           inline
           label=""
@@ -118,9 +118,9 @@ export default function Navigation() {
               </div>
             </DropdownItem>
           ))}
-        </Dropdown>
+        </Dropdown>*/}
 
-        <NavbarToggle />
+        <NavbarToggle className="cursor-pointer" />
       </div>
 
       <NavbarCollapse>
