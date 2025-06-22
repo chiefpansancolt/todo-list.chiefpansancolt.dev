@@ -8,12 +8,18 @@ import { getReleaseUrl, getReleasesUrl } from "@/utils/github";
 import { formatDate } from "@/utils/format";
 import { getChangeTypeLabel, getChangeTypeBadge } from "@/utils/changeTypes";
 import type { Version, ChangeItem } from "@/types/index";
+import { generatePageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Changelog - Todo List Desktop App",
+export const metadata = generatePageMetadata({
+  title: "Changelog",
   description:
     "Track the evolution of Todo List Desktop app. See new features, bug fixes, and improvements across all versions.",
-};
+  path: "/changelog",
+  type: "article",
+  publishedTime: "2025-06-14",
+  modifiedTime: "2025-06-21",
+  keywords: ["changelog", "updates", "version history", "release notes"],
+});
 
 const versions: Version[] = [
   {

@@ -4,12 +4,15 @@ import PageLayout from "@/comps/common/PageLayout";
 import PageHeader from "@/comps/common/PageHeader";
 import { InfoCards } from "@/comps/common/InfoCards";
 import { ExternalLink } from "@/comps/common/ExternalLink";
+import { generatePageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Terms of Service - Todo List Desktop App",
+export const metadata = generatePageMetadata({
+  title: "Terms of Service",
   description:
     "Terms of service for the Todo List desktop application. Learn about your rights and responsibilities when using our free, open-source software.",
-};
+  path: "/terms",
+  keywords: ["terms of service", "open source", "MIT license", "free software"],
+});
 
 const termsCards = [
   {

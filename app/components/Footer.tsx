@@ -17,7 +17,7 @@ export default function Footer() {
               className="mb-2 flex items-center text-2xl font-semibold text-gray-900 sm:mb-0 dark:text-white"
             >
               <Image
-                src="/icon.svg"
+                src="/logo.svg"
                 className="mr-2 h-8 w-8"
                 alt="Todo List Logo"
                 width={32}

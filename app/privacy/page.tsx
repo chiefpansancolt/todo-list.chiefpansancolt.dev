@@ -4,12 +4,20 @@ import PageLayout from "@/comps/common/PageLayout";
 import PageHeader from "@/comps/common/PageHeader";
 import { InfoCards } from "@/comps/common/InfoCards";
 import { ExternalLink } from "@/comps/common/ExternalLink";
+import { generatePageMetadata } from "@/lib/seo";
 
-export const metadata = {
-  title: "Privacy Policy - Todo List Desktop App",
+export const metadata = generatePageMetadata({
+  title: "Privacy Policy",
   description:
     "Privacy policy for the Todo List desktop application. Learn how we protect your data with local storage and zero data collection.",
-};
+  path: "/privacy",
+  keywords: [
+    "privacy policy",
+    "data protection",
+    "local storage",
+    "no tracking",
+  ],
+});
 
 const privacyCards = [
   {

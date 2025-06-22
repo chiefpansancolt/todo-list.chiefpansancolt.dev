@@ -86,7 +86,7 @@ export default function Navigation() {
     >
       <NavbarBrand href="/" className="space-x-3">
         <Image
-          src="/icon.svg"
+          src="/logo.svg"
           className="h-8 w-8"
           alt="Todo List Logo"
           width={32}
