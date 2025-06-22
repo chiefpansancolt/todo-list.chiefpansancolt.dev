@@ -1,8 +1,7 @@
 import React from "react";
 import { MdKeyboardCommandKey } from "react-icons/md";
 import { TbArrowBigUpFilled } from "react-icons/tb";
-import type { Shortcut } from "@/types/index";
-import type { ShortcutConfig } from "@/constants/data";
+import type { Shortcut, ShortcutConfig } from "@/types/index";
 
 /**
  * Converts shortcut config to shortcuts with JSX elements
