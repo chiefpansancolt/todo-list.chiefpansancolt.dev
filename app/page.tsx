@@ -5,6 +5,7 @@ import KeyboardShortcuts from "@/comps/KeyboardShortcuts";
 import SupportedLanguages from "@/comps/SupportedLanguages";
 import Downloads from "@/comps/Downloads";
 import FAQ from "@/comps/FAQ";
+import Footer from "@/comps/Footer";
 
 export default function Home() {
   return (
@@ -12,13 +13,15 @@ export default function Home() {
       <Navigation />
       <Hero />
 
-      <main className="bg-white dark:bg-gray-900">
+      <main className="bg-gray-900">
         <Features />
         <SupportedLanguages />
         <KeyboardShortcuts />
         <Downloads />
         <FAQ />
       </main>
+
+      <Footer />
     </>
   );
 }
