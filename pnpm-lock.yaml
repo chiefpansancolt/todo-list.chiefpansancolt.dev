@@ -10,7 +10,7 @@ importers:
     dependencies:
       flowbite-react:
         specifier: ^0.11.8
-        version: 0.11.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(tailwindcss@4.1.10)(typescript@5.8.3)
+        version: 0.11.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(tailwindcss@4.1.16)(typescript@5.8.3)
       next:
         specifier: ^15.3.4
         version: 15.3.4(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -52,8 +52,8 @@ importers:
         specifier: ^0.6.13
         version: 0.6.13(prettier@3.5.3)
       tailwindcss:
-        specifier: ^4.1.10
-        version: 4.1.10
+        specifier: ^4.1.16
+        version: 4.1.16
       typescript:
         specifier: ^5.8.3
         version: 5.8.3
@@ -1908,6 +1908,9 @@ packages:
   tailwindcss@4.1.10:
     resolution: {integrity: sha512-P3nr6WkvKV/ONsTzj6Gb57sWPMX29EPNPopo7+FcpkQaNsrNpZ1pv8QmrYI2RqEKD7mlGqLnGovlcYnBK0IqUA==}
 
+  tailwindcss@4.1.16:
+    resolution: {integrity: sha512-pONL5awpaQX4LN5eiv7moSiSPd/DLDzKVRJz8Q9PgzmAdd1R4307GQS2ZpfiN7ZmekdQrfhZZiSE5jkLR4WNaA==}
+
   tapable@2.2.2:
     resolution: {integrity: sha512-Re10+NauLTMCudc7T5WLFLAwDhQ0JWdrMK+9B2M8zR5hRExKmsRDCBA7/aV/pNJFltmBFO5BAMlQFi/vq3nKOg==}
     engines: {node: '>=6'}
@@ -3173,7 +3176,7 @@ snapshots:
 
   flatted@3.3.3: {}
 
-  flowbite-react@0.11.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(tailwindcss@4.1.10)(typescript@5.8.3):
+  flowbite-react@0.11.8(react-dom@19.1.0(react@19.1.0))(react@19.1.0)(tailwindcss@4.1.16)(typescript@5.8.3):
     dependencies:
       '@floating-ui/core': 1.6.9
       '@floating-ui/react': 0.27.3(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
@@ -3191,7 +3194,7 @@ snapshots:
       recast: 0.23.11
       tailwind-merge-v2: tailwind-merge@2.6.0
       tailwind-merge-v3: tailwind-merge@3.0.1
-      tailwindcss: 4.1.10
+      tailwindcss: 4.1.16
     transitivePeerDependencies:
       - supports-color
       - typescript
@@ -3973,6 +3976,8 @@ snapshots:
   tailwind-merge@3.0.1: {}
 
   tailwindcss@4.1.10: {}
+
+  tailwindcss@4.1.16: {}
 
   tapable@2.2.2: {}
 
