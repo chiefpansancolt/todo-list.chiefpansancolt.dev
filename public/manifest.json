@@ -1,39 +1,39 @@
 {
-  "name": "Todo List Desktop App",
-  "short_name": "Todo List",
-  "description": "A powerful yet simple todo list app for Mac, Windows, and Linux. Find the perfect middle ground between simple and complex task management.",
-  "start_url": "/",
-  "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#3b82f6",
-  "orientation": "portrait-primary",
-  "icons": [
-    {
-      "src": "/icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
-    },
-    {
-      "src": "/apple-touch-icon.png",
-      "sizes": "180x180",
-      "type": "image/png"
-    }
-  ],
-  "categories": ["productivity", "utilities"],
-  "lang": "en-US",
-  "dir": "ltr",
-  "related_applications": [
-    {
-      "platform": "native",
-      "url": "https://github.com/chiefpansancolt/todo-list/releases/latest"
-    }
-  ],
-  "prefer_related_applications": false
+    "name": "Todo List Desktop App",
+    "short_name": "Todo List",
+    "description": "A powerful yet simple todo list app for Mac, Windows, and Linux. Find the perfect middle ground between simple and complex task management.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#3b82f6",
+    "orientation": "portrait-primary",
+    "icons": [
+        {
+            "src": "/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "/apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        }
+    ],
+    "categories": ["productivity", "utilities"],
+    "lang": "en-US",
+    "dir": "ltr",
+    "related_applications": [
+        {
+            "platform": "native",
+            "url": "https://github.com/chiefpansancolt/todo-list/releases/latest"
+        }
+    ],
+    "prefer_related_applications": false
 }

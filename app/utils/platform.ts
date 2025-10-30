@@ -1,5 +1,5 @@
-import type { Platform, LinuxFormat, GitHubRelease } from "@/types/index";
 import { linuxFormats } from "@/constants/platforms";
+import type { GitHubRelease, LinuxFormat, Platform } from "@/types/index";
 
 /**
  * Detects the user's platform based on user agent and platform information

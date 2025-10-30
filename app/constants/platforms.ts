@@ -1,10 +1,10 @@
-import { FaApple, FaWindows, FaLinux } from "react-icons/fa6";
+import { FaApple, FaLinux, FaWindows } from "react-icons/fa6";
 import type {
-  Platform,
-  PlatformInfo,
   Language,
   LinuxFormat,
   LinuxFormatInfo,
+  Platform,
+  PlatformInfo,
 } from "@/types/index";
 
 export const platformInfo: Record<Platform, PlatformInfo> = {

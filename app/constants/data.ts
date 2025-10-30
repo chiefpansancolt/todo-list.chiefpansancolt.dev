@@ -1,11 +1,11 @@
 import {
   HiClipboardList,
-  HiTag,
-  HiSparkles,
   HiDatabase,
   HiGlobeAlt,
+  HiSparkles,
+  HiTag,
 } from "react-icons/hi";
-import type { FeatureCategory, FAQItem, ShortcutConfig } from "@/types/index";
+import type { FAQItem, FeatureCategory, ShortcutConfig } from "@/types/index";
 
 export const featuresData: FeatureCategory[] = [
   {
