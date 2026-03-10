@@ -14,7 +14,7 @@ function usePlatform(): Platform | null {
 	return useSyncExternalStore(
 		emptySubscribe,
 		() => detectPlatform(),
-		() => null,
+		() => null
 	);
 }
 

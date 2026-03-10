@@ -18,7 +18,7 @@ function useIsMac(): boolean | null {
 	return useSyncExternalStore(
 		emptySubscribe,
 		() => detectMac(),
-		() => null,
+		() => null
 	);
 }
 
