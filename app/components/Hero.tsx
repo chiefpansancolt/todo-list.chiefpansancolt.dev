@@ -5,18 +5,22 @@ import { fetchLatestRelease } from "@/utils/github";
 import { detectPlatform, handleDownload as handlePlatformDownload } from "@/utils/platform";
 import { Button } from "flowbite-react";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import type { GitHubRelease, Platform } from "@/types/index";
 
-export default function Hero() {
-	const [detectedPlatform, setDetectedPlatform] = useState<Platform>("windows");
-	const [latestRelease, setLatestRelease] = useState<GitHubRelease | null>(null);
-	const [isClient, setIsClient] = useState(false);
+const emptySubscribe = () => () => {};
 
-	useEffect(() => {
-		setIsClient(true);
-		setDetectedPlatform(detectPlatform());
-	}, []);
+function usePlatform(): Platform | null {
+	return useSyncExternalStore(
+		emptySubscribe,
+		() => detectPlatform(),
+		() => null,
+	);
+}
+
+export default function Hero() {
+	const detectedPlatform = usePlatform();
+	const [latestRelease, setLatestRelease] = useState<GitHubRelease | null>(null);
 
 	useEffect(() => {
 		const loadLatestRelease = async () => {
@@ -46,8 +50,8 @@ export default function Hero() {
 		}
 	};
 
-	const currentPlatformInfo = platformInfo[detectedPlatform];
-	const PlatformIcon = currentPlatformInfo.icon;
+	const currentPlatformInfo = detectedPlatform ? platformInfo[detectedPlatform] : null;
+	const PlatformIcon = currentPlatformInfo?.icon;
 
 	return (
 		<section className="bg-white dark:bg-gray-900">
@@ -63,7 +67,7 @@ export default function Hero() {
 						easy again.
 					</p>
 
-					{isClient && (
+					{detectedPlatform && currentPlatformInfo && PlatformIcon && (
 						<>
 							<div className="mb-4 flex flex-col space-y-3 sm:flex-row sm:space-y-0 sm:space-x-4">
 								<Button

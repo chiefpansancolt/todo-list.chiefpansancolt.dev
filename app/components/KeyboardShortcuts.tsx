@@ -9,23 +9,27 @@ import {
 	type KeyboardKeyProps,
 } from "@/utils/keyboard";
 import { detectMac } from "@/utils/platform";
-import { useEffect, useState } from "react";
+import { useSyncExternalStore } from "react";
 import { MdKeyboard } from "react-icons/md";
+
+const emptySubscribe = () => () => {};
+
+function useIsMac(): boolean | null {
+	return useSyncExternalStore(
+		emptySubscribe,
+		() => detectMac(),
+		() => null,
+	);
+}
 
 const KeyboardKey: React.FC<KeyboardKeyProps> = ({ keyContent, className }) => (
 	<kbd className={getKeyboardKeyClasses(className)}>{keyContent}</kbd>
 );
 
 export default function KeyboardShortcuts() {
-	const [isMac, setIsMac] = useState(false);
-	const [isClient, setIsClient] = useState(false);
+	const isMac = useIsMac();
 
-	useEffect(() => {
-		setIsClient(true);
-		setIsMac(detectMac());
-	}, []);
-
-	if (!isClient) {
+	if (isMac === null) {
 		return (
 			<section id="shortcuts" className="bg-white py-24 dark:bg-gray-800">
 				<div className="mx-auto max-w-screen-xl px-4 sm:px-6 lg:px-8">
