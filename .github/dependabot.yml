@@ -23,6 +23,9 @@ updates:
       flowbite:
         patterns:
           - flowbite-react
+      vercel:
+        patterns:
+          - "@vercel/*"
       prettier:
         patterns:
           - prettier
@@ -39,6 +42,10 @@ updates:
           - prettier
           - prettier-plugin-tailwindcss
           - "@trivago/prettier-plugin-sort-imports"
+    ignore:
+      - dependency-name: "eslint"
+        update-types:
+          - "version-update:semver-major"
 
   - package-ecosystem: github-actions
     directory: /
