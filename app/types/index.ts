@@ -1,16 +1,7 @@
 export type Platform = "mac" | "windows" | "linux";
 export type LinuxFormat = "appimage" | "deb" | "snap";
 export type LanguageCode =
-  | "en"
-  | "es"
-  | "fr"
-  | "de"
-  | "pt"
-  | "ja"
-  | "zh"
-  | "ko"
-  | "it"
-  | "nl";
+  "en" | "es" | "fr" | "de" | "pt" | "ja" | "zh" | "ko" | "it" | "nl";
 
 export interface Language {
   code: LanguageCode;

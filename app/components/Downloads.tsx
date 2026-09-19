@@ -5,20 +5,22 @@ import { formatDate } from "@/utils/format";
 import { fetchLatestRelease } from "@/utils/github";
 import { handleDownload as handlePlatformDownload } from "@/utils/platform";
 import { Button, Dropdown, DropdownItem, Spinner } from "flowbite-react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import { FaChevronDown, FaDownload, FaGithub } from "react-icons/fa6";
 import { HiDownload, HiExternalLink } from "react-icons/hi";
 import type { GitHubRelease, LinuxFormat, Platform } from "@/types/index";
 
+const subscribeNoop = () => () => {};
+
 export default function Downloads() {
-	const [isClient, setIsClient] = useState(false);
+	const isClient = useSyncExternalStore(
+		subscribeNoop,
+		() => true,
+		() => false
+	);
 	const [latestRelease, setLatestRelease] = useState<GitHubRelease | null>(null);
 	const [loading, setLoading] = useState(true);
 	const [error, setError] = useState<string | null>(null);
-
-	useEffect(() => {
-		setIsClient(true);
-	}, []);
 
 	useEffect(() => {
 		const loadLatestRelease = async () => {
