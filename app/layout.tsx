@@ -1,4 +1,3 @@
-import { Analytics } from "@vercel/analytics/next";
 import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import Script from "next/script";
@@ -179,7 +178,11 @@ export default function RootLayout({
 						}),
 					}}
 				/>
-				<Analytics />
+				<Script
+					defer
+					src="https://static.cloudflareinsights.com/beacon.min.js"
+					data-cf-beacon='{"token": "1bc1233b8fae47ab80793f43530960bf"}'
+				/>
 			</body>
 		</html>
 	);
