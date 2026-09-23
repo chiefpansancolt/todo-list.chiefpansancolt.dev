@@ -51,7 +51,6 @@ export function generatePageMetadata(params: {
 
   const description = params.description || siteConfig.description;
   const url = params.path ? `${siteConfig.url}${params.path}` : siteConfig.url;
-  const image = params.image || `${siteConfig.url}/og-image.png`;
 
   return {
     title,
@@ -76,14 +75,12 @@ export function generatePageMetadata(params: {
       description,
       url,
       siteName: siteConfig.name,
-      images: [
-        {
-          url: image,
-          width: 1200,
-          height: 630,
-          alt: title,
-        },
-      ],
+      // No explicit `images` here when the caller doesn't pass one — this
+      // lets Next's opengraph-image.tsx file convention supply the image
+      // instead of pointing at a hardcoded path that may not exist.
+      ...(params.image && {
+        images: [{ url: params.image, width: 1200, height: 630, alt: title }],
+      }),
       locale: siteConfig.locale,
       type: params.type || "website",
       ...(params.publishedTime && { publishedTime: params.publishedTime }),
@@ -94,7 +91,7 @@ export function generatePageMetadata(params: {
       title,
       description,
       creator: siteConfig.twitter,
-      images: [image],
+      ...(params.image && { images: [params.image] }),
     },
     robots: {
       index: true,

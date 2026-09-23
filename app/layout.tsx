@@ -77,14 +77,6 @@ export const metadata: Metadata = {
 			"A powerful yet simple todo list app for Mac, Windows, and Linux. Perfect balance between simple and complex task management.",
 		url: "https://todo-list.chiefpansancolt.dev",
 		siteName: "Todo List Desktop App",
-		images: [
-			{
-				url: "/og-image.png",
-				width: 1200,
-				height: 630,
-				alt: "Todo List Desktop App - Task Management Interface",
-			},
-		],
 		locale: "en_US",
 		type: "website",
 	},
@@ -93,7 +85,6 @@ export const metadata: Metadata = {
 		title: "Todo List Desktop App - Task Management Made Simple",
 		description: "A powerful yet simple todo list app for Mac, Windows, and Linux.",
 		creator: "@chiefpansancolt",
-		images: ["/twitter-image.png"],
 	},
 	robots: {
 		index: true,
@@ -106,20 +97,12 @@ export const metadata: Metadata = {
 			"max-snippet": -1,
 		},
 	},
+	// NOTE: hreflang alternates were previously advertising /es, /fr, /de, etc.
+	// routes that don't exist on this site (the app itself is translated,
+	// but the marketing site isn't). Removed until real localized pages
+	// exist — a hreflang entry must point to an actual distinct URL.
 	alternates: {
 		canonical: "https://todo-list.chiefpansancolt.dev",
-		languages: {
-			"en-US": "https://todo-list.chiefpansancolt.dev",
-			"es-ES": "https://todo-list.chiefpansancolt.dev/es",
-			"fr-FR": "https://todo-list.chiefpansancolt.dev/fr",
-			"de-DE": "https://todo-list.chiefpansancolt.dev/de",
-			"pt-PT": "https://todo-list.chiefpansancolt.dev/pt",
-			"ja-JP": "https://todo-list.chiefpansancolt.dev/ja",
-			"zh-CN": "https://todo-list.chiefpansancolt.dev/zh",
-			"ko-KR": "https://todo-list.chiefpansancolt.dev/ko",
-			"it-IT": "https://todo-list.chiefpansancolt.dev/it",
-			"nl-NL": "https://todo-list.chiefpansancolt.dev/nl",
-		},
 	},
 };
 
