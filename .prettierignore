@@ -3,3 +3,4 @@ pnpm-lock.yaml
 .vscode/
 node_modules/
 dist/
+.flowbite-react/class-list.json
